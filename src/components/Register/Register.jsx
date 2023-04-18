@@ -4,7 +4,7 @@ import { UserProvider } from '../../Provider/AuthProvider';
 
 const Register = () => {
 
-    const {user} = useContext(UserProvider);
+    const {user, createUser} = useContext(UserProvider);
 
     console.log(user)
     const handelRegister = event => {
@@ -14,7 +14,20 @@ const Register = () => {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name,email,password)
+        console.log(name,email,password);
+        
+
+
+        createUser(email, password)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser)
+            form.reset()
+            
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
 
 
@@ -43,7 +56,7 @@ const Register = () => {
                     </label>
                 </div>
                 <div className="form-control mt-6">
-                    <button className="btn btn-primary">Login</button>
+                    <button className="btn btn-primary">Register Now</button>
                 </div>
             </form>
             <Link to="/logIn" className="label-text-alt link link-hover">You have all ready account?</Link>

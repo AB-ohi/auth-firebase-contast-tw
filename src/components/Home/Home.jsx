@@ -3,7 +3,7 @@ import { UserProvider } from '../../Provider/AuthProvider';
 
 const Home = () => {
 
-    const {user} = useContext(UserProvider)
+    const {user, createUser} = useContext(UserProvider)
     console.log(user)
     return (
         <div>
